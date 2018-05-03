@@ -13,8 +13,9 @@ import (
 )
 
 type User struct {
-	Password string
-	Username string
+	Password string `json:password`
+	Username string `json:username`
+	Email string `json:email`
 }
 
 var session *mgo.Session
@@ -22,7 +23,7 @@ var col *mgo.Collection
 
 func ListEndpoint(w http.ResponseWriter, req *http.Request) {
 	var users []User
-	err := col.Find(bson.M{}).All(&users)
+	err := col.Find(bson.M{}).Limit(50).All(&users)
 
 	if err != nil {
 		fmt.Println(err)
