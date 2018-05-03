@@ -35,7 +35,7 @@ func ListEndpoint(w http.ResponseWriter, req *http.Request) {
 func SearchEndpoint(w http.ResponseWriter, req *http.Request) {
 	var users []User
 	params := mux.Vars(req)
-	err := col.Find(bson.M{"username": params["username"]}).All(&users)
+	err := col.Find(bson.M{"username": bson.RegEx{params["username"], "i"}}).Limit(50).All(&users)
 
 	if err != nil {
 		fmt.Println(err)
