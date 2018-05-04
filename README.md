@@ -2,9 +2,11 @@
 Golang Server Side. Angular Front End. Mongo as the Database.
 
 ## Running the program
+
 ### Server
 `go run main.go`
-####Configurations
+
+#### Configurations
 MongoDB running at `DATABASE_URL`
 
 ### client
