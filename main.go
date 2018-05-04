@@ -1,22 +1,24 @@
 package main
 
 //todo
-//Concept of Local, Development, Production.
 //Wrapped into docker containers.
 //Connected to Auth.
 //Authenticate users when they come in.
-//Add Readme
 
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
+	"os"
+
+	"github.com/farrellw/golang-angular-skeleton/configuration"
+	"github.com/joho/godotenv"
 
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 type User struct {
@@ -32,10 +34,21 @@ type Patient struct {
 var session *mgo.Session
 var col *mgo.Collection
 var port string
+var databaseURL string
+var config configuration.Config
 
-// func init(){
-// 	port
-// }
+func init() {
+	godotenv.Load()
+	stage := os.Getenv("STAGE")
+	if stage == "" {
+		stage = "local"
+	}
+
+	config = configuration.LoadConfig(stage)
+	configValues := config.ConfigValues
+	port = configValues.Port
+	databaseURL = configValues.DatabaseURL
+}
 
 func ListEndpoint(w http.ResponseWriter, req *http.Request) {
 	var users []Patient
