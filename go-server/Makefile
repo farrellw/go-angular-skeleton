@@ -22,6 +22,10 @@ run:
 		
 # Cross compilation
 build-linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_UNIX) -v
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o $(BINARY_NAME)
 docker-build:
-	docker run --rm -it -v "$(GOPATH)":/go -w /go/src/bitbucket.org/rsohlich/makepost golang:latest go build -o "$(BINARY_UNIX)" -v
+	docker build -t my-golang-app .
+docker-run:
+	docker run -p 12345:12345 -it --rm --name my-running-app my-golang-app
+
+docker-all: build-linux docker-build docker-run

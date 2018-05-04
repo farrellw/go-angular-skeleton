@@ -12,7 +12,7 @@ import (
 	"os"
 	"log"
 
-	"github.com/farrellw/golang-angular-skeleton/configuration"
+	"github.com/farrellw/golang-angular-skeleton/go-server/configuration"
 	"github.com/joho/godotenv"
 
 	"github.com/globalsign/mgo"
@@ -91,7 +91,7 @@ func CreateEndpoint(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	var err error
-	session, err = mgo.Dial("mongodb://localhost:27017")
+	session, err = mgo.Dial(databaseURL)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -104,6 +104,6 @@ func main() {
 	router.HandleFunc("/users", CreateEndpoint).Methods("POST")
 	router.HandleFunc("/search/{username}", SearchEndpoint).Methods("GET")
 
-	fmt.Println("Starting server at http://localhost:12345...")
-	log.Fatal(http.ListenAndServe(":12345", handlers.CORS(handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+	fmt.Println("Starting server on port " + port)
+	log.Fatal(http.ListenAndServe(":" + port, handlers.CORS(handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD"}), handlers.AllowedOrigins([]string{"*"}))(router)))
 }
