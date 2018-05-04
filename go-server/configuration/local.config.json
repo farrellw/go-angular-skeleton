@@ -1,4 +1,4 @@
 {
-    "databaseURL": "mongodb://10.40.43.220:27017",
+    "databaseURL": "mongodb://localhost:27017",
     "port": "12345"
 }
