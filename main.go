@@ -1,8 +1,6 @@
 package main
 
 //todo
-//Concept of Local, Development, Production.
-//Configuration loaded from file
 //Wrapped into docker containers.
 //Connected to Auth.
 //Authenticate users when they come in.
@@ -50,9 +48,6 @@ func init() {
 	configValues := config.ConfigValues
 	port = configValues.Port
 	databaseURL = configValues.DatabaseURL
-	log.Info(config)
-	log.Info(port)
-	log.Info(databaseURL)
 }
 
 func ListEndpoint(w http.ResponseWriter, req *http.Request) {
