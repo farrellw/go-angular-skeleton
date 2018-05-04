@@ -30,7 +30,6 @@ func LoadConfig(stage string) Config {
 	} else {
 		return loadFromFile(stage)
 	}
-
 }
 
 func loadFromFile(stage string) Config {
