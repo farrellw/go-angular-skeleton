@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-//import { User } from './user';
+import User, { MyUser } from './user';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map'
 })
 
 export class UsersComponent implements OnInit {
-  public users: any
+  public users: User[]
 
   public constructor(private http: Http, private router: Router, private location: Location) {
     this.users = [];
@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  // public create() {
-  //   this.router.navigate(["create"]);
-  // }
+  public create() {
+    this.router.navigate(["create"]);
+  }
 }

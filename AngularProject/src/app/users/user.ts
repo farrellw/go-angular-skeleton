@@ -7,3 +7,13 @@ export default class User {
     }
 
 }
+
+export class MyUser {
+    public username: string;
+    public emailAddress: string;
+
+    constructor(){
+
+    }
+
+}
