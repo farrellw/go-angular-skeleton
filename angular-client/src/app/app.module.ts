@@ -11,6 +11,7 @@ import { AvailableRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 import { CreateComponent } from './create/create.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { CreateComponent } from './create/create.component';
         RouterModule,
         RouterModule.forRoot(AvailableRoutes),
         MatToolbarModule,
-        MatInputModule
+        MatInputModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
