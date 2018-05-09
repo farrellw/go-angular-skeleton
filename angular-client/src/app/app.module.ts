@@ -14,7 +14,7 @@ import { CreateComponent } from './create/create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalComponent } from './modal/modal.component';
 import { UserRowComponent } from './users/user-row/user-row.component';
-import { UserCompleteComponent } from './users/user-complete/user-complete.component';
+import { UserModalComponent } from './users/user/user.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { UserCompleteComponent } from './users/user-complete/user-complete.compo
         CreateComponent,
         ModalComponent,
         UserRowComponent,
-        UserCompleteComponent,
+        UserModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -40,6 +40,6 @@ import { UserCompleteComponent } from './users/user-complete/user-complete.compo
     ],
     providers: [],
     bootstrap: [AppComponent],
-    entryComponents: [ModalComponent]
+    entryComponents: [ UserModalComponent ]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ import { Router, UrlSerializer } from '@angular/router';
 import { Location } from '@angular/common';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import User from '../user';
-import { ModalComponent } from '../../modal/modal.component';
+import { UserModalComponent } from '../user/user.component';
 
 @Component({
   selector: '[myTr]',
@@ -21,14 +21,12 @@ export class UserRowComponent implements OnInit{
 
     viewUser(e){
         e.preventDefault();
-        console.log("View user clicked");
-        console.log(this.user);
         var dialogConfig = new MatDialogConfig();
 
         dialogConfig.autoFocus = true;
-        dialogConfig.data = { user: this.user}
+        dialogConfig.data = { user: this.user }
 
-        this.dialog.open(ModalComponent, dialogConfig)
+        this.dialog.open(UserModalComponent, dialogConfig)
     }
 
     ngOnInit() {
