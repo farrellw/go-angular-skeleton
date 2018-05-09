@@ -8,18 +8,21 @@
     <div>
         <input matInput placeholder="Search" (keyup.enter)="search($event)">
     </div>
-    <table style="width: 100%; margin-top: 10px; border-collapse: collapse">
+    <table class="table" style="width: 100%; margin-top: 10px; border-collapse: collapse">
         <thead style="text-align: left">
             <tr>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Individual View</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users" style="border-top: 1px solid black">
+            <!-- <tr *ngFor="let user of users" style="border-top: 1px solid black">
                 <td>{{ user.Username }}</td>
                 <td>{{ user.Email }}</td>
-            </tr>
+                <td></td>
+            </tr> -->
+            <tr *ngFor="let user of users" myTr [user]="user"></tr>
         </tbody>
     </table>
 </div>

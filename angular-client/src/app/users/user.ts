@@ -1,19 +1,10 @@
 export default class User {
-    public username: string;
-    public emailAddress: string;
+    public Username: string;
+    public Email: string;
 
-    constructor(){
-
-    }
-
-}
-
-export class MyUser {
-    public username: string;
-    public emailAddress: string;
-
-    constructor(){
-
+    constructor(username, emailAddress){
+        this.Username = username;
+        this.Email = emailAddress;
     }
 
 }
