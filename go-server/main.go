@@ -1,7 +1,6 @@
 package main
 
 //todo
-//Wrapped into docker containers.
 //Connected to Auth.
 //Authenticate users when they come in.
 
@@ -115,7 +114,7 @@ func main() {
 	router.HandleFunc("/users", ListEndpoint).Methods("GET")
 	router.HandleFunc("/users", CreateEndpoint).Methods("POST")
 	router.HandleFunc("/search/{username}", SearchEndpoint).Methods("GET")
-	router.HandleFunc("/users/{userID}", SearchEndpoint).Methods("GET")
+	router.HandleFunc("/users/{userID}", FindOneEndpoint).Methods("GET")
 
 	fmt.Println("Starting server on port " + port)
 	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD"}), handlers.AllowedOrigins([]string{"*"}))(router)))
