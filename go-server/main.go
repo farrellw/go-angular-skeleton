@@ -1,16 +1,15 @@
 package main
 
 //todo
-//Wrapped into docker containers.
 //Connected to Auth.
 //Authenticate users when they come in.
 
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
-	"log"
 
 	"github.com/farrellw/golang-angular-skeleton/go-server/configuration"
 	"github.com/joho/godotenv"
@@ -74,6 +73,18 @@ func SearchEndpoint(w http.ResponseWriter, req *http.Request) {
 	json.NewEncoder(w).Encode(users)
 }
 
+func FindOneEndpoint(w http.ResponseWriter, req *http.Request) {
+	var user Patient
+	params := mux.Vars(req)
+	err := col.Find(bson.M{"username": params["userID"]}).One(&user)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	json.NewEncoder(w).Encode(user)
+}
+
 func CreateEndpoint(w http.ResponseWriter, req *http.Request) {
 	var user Patient
 	var err error
@@ -103,7 +114,8 @@ func main() {
 	router.HandleFunc("/users", ListEndpoint).Methods("GET")
 	router.HandleFunc("/users", CreateEndpoint).Methods("POST")
 	router.HandleFunc("/search/{username}", SearchEndpoint).Methods("GET")
+	router.HandleFunc("/users/{userID}", FindOneEndpoint).Methods("GET")
 
 	fmt.Println("Starting server on port " + port)
-	log.Fatal(http.ListenAndServe(":" + port, handlers.CORS(handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+	log.Fatal(http.ListenAndServe(":"+port, handlers.CORS(handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD"}), handlers.AllowedOrigins([]string{"*"}))(router)))
 }
