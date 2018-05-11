@@ -1,5 +1,7 @@
 # Go-Angular-Skeleton
-Golang Server Side. Angular Front End. Mongo as the Database.
+Golang Server Side
+Angular 6 Front End. 
+MongoDB.
 
 ## Running the program
 
